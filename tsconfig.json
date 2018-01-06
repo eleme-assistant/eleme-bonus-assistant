@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2015",
+        "noImplicitAny": false,
+        "removeComments": false,
+        "outDir": "build",
+        "sourceMap": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "pretty": true
+    },
+    "include": [
+        "index.ts",
+        "api/**/*"
+    ]
+}
