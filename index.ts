@@ -1,13 +1,20 @@
 import { Handler } from './api/handler';
 import * as _ from 'lodash';
 
-export async function main(event, context) {
-    let error = null;
+export async function main(event) {
 
-    const handler = new Handler(event);
-    const res = await handler.resolve();
+    if (event['requestContext']['path'] === '/test' && event['requestContext']['httpMethod'] === 'POST') {
+        let error = null;
+        const body = event['body'];
 
-    if (_.isEmpty(res)) error = Error('数据异常');
+        const handler = new Handler(body);
+        const res = await handler.resolve();
 
-    return error || res;
+        if (_.isEmpty(res)) error = Error('数据异常');
+
+        return error || res;
+    } else {
+        return '非法的路由';
+    }
+
 }

@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es2015",
+        "target": "es6",
         "noImplicitAny": false,
-        "removeComments": false,
+        "removeComments": true,
         "outDir": "build",
         "sourceMap": false,
         "emitDecoratorMetadata": true,
@@ -12,6 +12,7 @@
     },
     "include": [
         "index.ts",
+        "scf.ts",
         "api/**/*"
     ]
 }

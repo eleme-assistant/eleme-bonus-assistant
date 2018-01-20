@@ -1,11 +1,13 @@
 import * as _ from 'lodash';
 import axios, { AxiosResponse } from 'axios';
-import * as faker from 'faker/locale/zh_CN';
+import * as faker from 'faker';
 import { Request } from './request';
 import { IBonus } from '../../interface/eleme-bonus-assistant';
 import { IRequest } from '../../interface/commons';
 import { Slice } from './slice';
 import * as config from 'config';
+import * as fs from 'fs';
+import * as path from 'path';
 
 export class Handler {
 
@@ -17,8 +19,11 @@ export class Handler {
     constructor(params: { url: string, phone: string }) {
         this.request = new Request();
 
-        if (config.has('babies')) {
-            this.babies = config.get('babies');
+        const config = fs.readFileSync(path.resolve(__dirname + '/../config/default.json'));
+        const config_json = JSON.parse(config.toString());
+
+        if (config_json.babies) {
+            this.babies = config_json.babies;
         } else {
             throw Error('没有宝宝');
         }
